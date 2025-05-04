@@ -1,15 +1,32 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import javax.swing.*;
+import java.awt.*;
+
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Teste");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(400, 300);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+            JPanel panel = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    Graphics2D g2 = (Graphics2D) g;
+                    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                            RenderingHints.VALUE_ANTIALIAS_ON);
+                    g2.setColor(Color.BLUE);
+                    g2.fillOval(100, 50, 100, 100);
+                    g2.setColor(Color.BLACK);
+                    g2.setFont(new Font("SansSerif", Font.BOLD, 18));
+                    g2.drawString("ai que nao sei o que", 115, 180);
+                }
+            };
+
+            frame.add(panel);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
     }
 }
